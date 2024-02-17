@@ -1,0 +1,12 @@
+
+spring:
+  datasource:
+    password: 123456
+    username: adziri
+#    url: jdbc:postgresql://localhost:15432/docker_db
+    url: jdbc:postgresql://postgresqlserver:5432/docker_db
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update

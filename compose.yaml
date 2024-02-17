@@ -1,0 +1,36 @@
+version: "3.1"
+
+
+services:
+
+  practice:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - POSTGRES_URL=jdbc:postgresql://postgresqlserver/docker_db
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgresqlserver
+
+
+  postgresqlserver:
+    image: postgres:16.1
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: adziri
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: docker_db
+    restart: no
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+      - postgresql_config:/etc/postgresql/conf.d
+
+volumes:
+  postgresql_data:
+  postgresql_config:
